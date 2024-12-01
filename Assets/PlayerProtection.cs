@@ -6,17 +6,17 @@ public class PlayerProtection : MonoBehaviour
 
     public void ActivateShield(float duration)
     {
-        if (isShieldActive) return; // אם כבר המגן פעיל, לא לעשות כלום
+        if (isShieldActive) return; // If the shield is already active, do nothing
         isShieldActive = true;
 
-        // כיבוי ה-Collider של השחקן כדי למנוע פגיעות
+        // Turning off the player's collider to prevent damage
         Collider2D playerCollider = GetComponent<Collider2D>();
         if (playerCollider != null)
         {
             playerCollider.enabled = false;
         }
 
-        // נוודא שההגנה תתבטל אחרי הזמן שקבענו
+        // We will make sure that the protection is canceled after the time we set
         Invoke(nameof(DeactivateShield), duration);
         Debug.Log("Shield activated! Player is protected.");
     }
@@ -26,7 +26,7 @@ public class PlayerProtection : MonoBehaviour
         isShieldActive = false;
         Debug.Log("Shield deactivated! Player is no longer protected.");
 
-        // הפעלת ה-Collider מחדש לאחר שהמגן פג
+        // Restarting the collider after the shield has expired
         Collider2D playerCollider = GetComponent<Collider2D>();
         if (playerCollider != null)
         {
@@ -38,16 +38,15 @@ public class PlayerProtection : MonoBehaviour
     {
         if (isShieldActive && other.CompareTag("Enemy"))
         {
-            // התעלמות מהפגיעה של האויב בזמן שהמגן פעיל
+            // Ignoring the enemy's damage while the shield is active
             Debug.Log("Enemy collision ignored due to active shield.");
             return;
         }
 
-        // טיפול רגיל במגעים (כאשר המגן אינו פעיל)
+        // Normal handling of contacts (when the shield is not active)
         if (other.CompareTag("Enemy"))
         {
             Debug.Log("Player hit by enemy!");
-            // כאן ניתן להוסיף את הקוד לפסילת השחקן
         }
     }
 }
