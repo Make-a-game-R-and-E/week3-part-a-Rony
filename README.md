@@ -26,3 +26,5 @@ The feature adds a new level of challenge and requires the player to endure over
 In the first five seconds from the start of the game, the player cannot be disqualified.
   - purpose:
 Giving the player initial adjustment time to organize and understand the game before the real challenge begins.
+
+Link to the game : https://ronylevy1.itch.io/week-3-part-a-game
